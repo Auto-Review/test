@@ -1,4 +1,4 @@
-package com.dd2d.ori_android.ui.theme
+package com.dd2d.ori_android.feature.common.theme
 
 import androidx.compose.ui.graphics.Color
 

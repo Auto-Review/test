@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
 
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.Oriandroid</item>
+    </style>
     <style name="Theme.Oriandroid" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

@@ -5,43 +5,57 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.dd2d.ori_android.ui.theme.OriandroidTheme
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
+import com.dd2d.ori_android.feature.common.theme.OriandroidTheme
+import com.dd2d.ori_android.feature.navigation.AppDestination
+import com.dd2d.ori_android.feature.navigation.AppNavHost
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val inInitializing = MutableStateFlow(true)
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        installSplashScreen().apply {
+            initApp()
+            setKeepOnScreenCondition { inInitializing.value }
+        }
         enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+
         setContent {
             OriandroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                App(
+                    startDestination = AppDestination.SignIn,
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
             }
+        }
+    }
+
+    private fun initApp() {
+        lifecycleScope.launch {
+            // 초기화 작업
+            delay(2000L)
+            inInitializing.value = false
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
+fun App(
+    modifier: Modifier = Modifier,
+    startDestination: AppDestination
+) {
+    AppNavHost(
+        startDestination = startDestination,
         modifier = modifier
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    OriandroidTheme {
-        Greeting("Android")
-    }
 }
