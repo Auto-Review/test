@@ -1,4 +1,4 @@
-package com.dd2d.ori_android.feature.common.theme
+package com.dd2d.ori_android.feature._common.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,5 +1,6 @@
-package com.dd2d.ori_android.feature.screen_sign_in
+package com.dd2d.ori_android.feature.screen_code.page
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -9,23 +10,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun SignInScreen(
-    onSignIn: () -> Unit,
-    modifier: Modifier = Modifier
+fun CodeDetailPage(
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
+    BackHandler(onBack = onBack)
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
     ) {
-        Text(text = "로그인 화면")
+        Text(text = "Code Detail Page")
     }
 }
 
 @Preview
 @Composable
-private fun SignInScreenPrev() {
-    SignInScreen(
-        onSignIn = {},
+private fun CodeDetailPagePrev() {
+    CodeDetailPage(
+        onBack = {},
         modifier = Modifier
             .fillMaxSize()
     )

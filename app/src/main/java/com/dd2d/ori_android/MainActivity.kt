@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import com.dd2d.ori_android.feature.common.theme.OriandroidTheme
+import com.dd2d.ori_android.feature._common.theme.OriandroidTheme
 import com.dd2d.ori_android.feature.navigation.AppDestination
 import com.dd2d.ori_android.feature.navigation.AppNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             OriandroidTheme {
                 App(
-                    startDestination = AppDestination.SignIn,
+                    startDestination = AppDestination.Main,
                     modifier = Modifier
                         .fillMaxSize()
                 )

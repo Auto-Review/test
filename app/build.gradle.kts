@@ -88,4 +88,18 @@ dependencies {
 
     // splash
     implementation(libs.androidx.core.splashscreen)
+
+    // navigation-suite
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+
+    // adaptive-layout
+    implementation(libs.androidx.adaptive)
+    implementation(libs.androidx.adaptive.layout)
+    implementation(libs.androidx.adaptive.navigation)
+
+    // ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }

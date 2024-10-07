@@ -1,6 +1,5 @@
-package com.dd2d.ori_android.feature.common.theme
+package com.dd2d.ori_android.feature._common.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
