@@ -5,12 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dd2d.ori_android.core.data.remote._common.RemoteDataState
 import com.dd2d.ori_android.core.data.remote.code.repository.CodeRepository
-import com.dd2d.ori_android.core.data.remote.code.response.CodeListItemResponseDTO
 import com.dd2d.ori_android.core.model.screen_code.CodeListItemModel
 import com.dd2d.ori_android.core.model.screen_code.CodeSearchModel
 import com.dd2d.ori_android.core.model.screen_code.mapModel
 import com.dd2d.ori_android.core.model.screen_code.toDTO
-import com.dd2d.ori_android.core.model.screen_code.toModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
