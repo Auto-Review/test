@@ -1,5 +1,7 @@
 package com.dd2d.ori_android.feature.screen_code.page
 
+import android.util.Log
+import androidx.compose.animation.core.snap
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +24,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +36,8 @@ import com.dd2d.ori_android.feature._common.theme.MainColor
 import com.dd2d.ori_android.feature.screen_code.CodeListPageState
 import com.dd2d.ori_android.feature.screen_code.component.code_list_page.CodeListItem
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +55,8 @@ internal fun CodeListPage(
     val lazyState = rememberLazyListState()
     val requireNextPage by remember {
         derivedStateOf {
-            lazyState.firstVisibleItemIndex >= list.size * 0.5
+            lazyState.firstVisibleItemIndex >= list.size * 0.8
+                    && list.size > 0
         }
     }
 
@@ -59,6 +65,7 @@ internal fun CodeListPage(
             requestNextPage()
         }
     }
+
 
     PullToRefreshBox(
         state = refreshState,
@@ -76,7 +83,6 @@ internal fun CodeListPage(
             item(key = "top-space") {
                 Spacer(modifier = Modifier.height(10.dp))
             }
-
 
             items(
                 items = list,
@@ -120,7 +126,7 @@ private fun CodeListPagePrev() {
     LaunchedEffect(Unit) {
         delay(2000L)
         list.addAll(DummyCodeList)
-        state = CodeListPageState.Success
+        state = CodeListPageState.Success(false)
     }
     CodeListPage(
         list = list,
