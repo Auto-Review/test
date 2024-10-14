@@ -1,3 +1,6 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -10,6 +13,9 @@ android {
     namespace = "com.dd2d.ori_android"
     compileSdk = 34
 
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
+
     defaultConfig {
         applicationId = "com.dd2d.ori_android"
         minSdk = 26
@@ -21,6 +27,10 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val kakaoSignInSdkKey = properties.getProperty("kakao-sign-in-sdk-key")
+        buildConfigField("String", "KAKAO_SIGN_IN_SDK_KEY", "\"${kakaoSignInSdkKey}\"")
+        manifestPlaceholders["KAKAO_SIGN_IN_SDK_KEY"] = kakaoSignInSdkKey
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
@@ -102,4 +113,7 @@ dependencies {
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
+
+    // kakao
+    implementation(libs.kakao.v2.user) // 카카오 로그인 API 모듈
 }
