@@ -16,6 +16,8 @@ data class CodeListItemModel(
     val level: Int,
     val reviewTime: String,
     val code: String,
+    val createdAt: String,
+    val updatedAt: String,
 )
 
 fun CodeListItemResponseDTO.toModel() = CodeListItemModel(
@@ -25,5 +27,7 @@ fun CodeListItemResponseDTO.toModel() = CodeListItemModel(
     level = level,
     reviewTime = reviewTime,
     code = code,
+    createdAt = createdAt,
+    updatedAt = updatedAt
 )
 fun List<CodeListItemResponseDTO>.mapModel() = map(CodeListItemResponseDTO::toModel)

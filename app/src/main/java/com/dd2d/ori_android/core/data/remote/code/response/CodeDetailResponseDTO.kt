@@ -10,4 +10,6 @@ data class CodeDetailResponseDTO(
     val level: Int,
     val reviewTime: String,
     val code: String,
+    val createdAt: String,
+    val updatedAt: String
 )
