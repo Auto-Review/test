@@ -52,10 +52,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App(
     modifier: Modifier = Modifier,
-    startDestination: AppDestination
+    startDestination: AppDestination,
 ) {
     AppNavHost(
         startDestination = startDestination,
         modifier = modifier
     )
 }
+
