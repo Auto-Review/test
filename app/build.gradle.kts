@@ -31,6 +31,12 @@ android {
         val kakaoSignInSdkKey = properties.getProperty("kakao-sign-in-sdk-key")
         buildConfigField("String", "KAKAO_SIGN_IN_SDK_KEY", "\"${kakaoSignInSdkKey}\"")
         manifestPlaceholders["KAKAO_SIGN_IN_SDK_KEY"] = kakaoSignInSdkKey
+
+        val googleSignInSdkKey = properties.getProperty("google-sign-in-sdk-key")
+        buildConfigField("String", "GOOGLE_SIGN_IN_SDK_KEY", "\"${googleSignInSdkKey}\"")
+
+        val baseUrl = properties.getProperty("base-url")
+        buildConfigField("String", "BASE_URL", "\"${baseUrl}\"")
     }
 
     buildTypes {
@@ -114,6 +120,13 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
 
-    // kakao
+    // kakao sign in
     implementation(libs.kakao.v2.user) // 카카오 로그인 API 모듈
+
+    // google sign in
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.google.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 }
